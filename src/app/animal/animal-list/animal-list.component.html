@@ -1,6 +1,5 @@
 <ul>
     <li *ngFor="let animal of animals">
-        {{ animal.name }}
-        <a appMailTo>{{ animal.email }}</a>
+        <app-animal-item [model]="animal" (delete)="deleteItem($event)"></app-animal-item>
     </li>
 </ul>

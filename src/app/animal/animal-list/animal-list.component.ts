@@ -12,6 +12,11 @@ export class AnimalListComponent implements OnInit {
 
   constructor(private animalService: AnimalService) {}
 
+  deleteItem(animal: Animal): void {
+    const index = this.animals.indexOf(animal);
+    this.animals.splice(index, 1);
+  }
+
   ngOnInit(): void {
     this.animals = this.animalService.getAll();
   }

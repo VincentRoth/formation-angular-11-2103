@@ -11,15 +11,12 @@ import { AnimalService } from '../../shared/api/animal.service';
 export class AnimalDetailComponent implements OnInit {
   animal: Animal;
 
-  constructor(
-    private animalService: AnimalService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.animalService.get(Number(id)).subscribe((animal) => {
-      this.animal = animal;
-    });
+    this.animal = this.activatedRoute.snapshot.data.animal;
+    /* this.activatedRoute.data.subscribe((data: { animal: Animal }) => {
+      this.animal = data.animal;
+    }); */
   }
 }

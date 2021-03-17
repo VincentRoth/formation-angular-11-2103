@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Veterinarian } from '../../shared/api/veterinarian';
 import { VeterinarianService } from '../../shared/api/veterinarian.service';
@@ -26,34 +26,37 @@ export class VetFormComponent implements OnInit {
   ngOnInit(): void {
     if (this.id) {
       this.vetService.get(this.id).subscribe((vet) => {
-        this.vetForm = new FormGroup({
-          firstName: new FormControl(vet.firstName),
-          lastName: new FormControl(vet.lastName),
-        });
+        this.initForm(vet);
       });
     } else {
-      this.vetForm = new FormGroup({
-        firstName: new FormControl(),
-        lastName: new FormControl(),
-      });
+      this.initForm();
     }
   }
 
   onSubmit(): void {
-    const value: Veterinarian = this.vetForm.value;
-    if (this.id) {
-      this.vetService
-        .update({
-          ...value,
-          id: this.id,
-        })
-        .subscribe(() => {
-          this.router.navigate(['/animals']);
+    if (this.vetForm.valid) {
+      const value: Veterinarian = this.vetForm.value;
+      if (this.id) {
+        this.vetService
+          .update({
+            ...value,
+            id: this.id,
+          })
+          .subscribe(() => {
+            this.router.navigate(['/veterinarians']);
+          });
+      } else {
+        this.vetService.create(value).subscribe(() => {
+          this.router.navigate(['/veterinarians']);
         });
-    } else {
-      this.vetService.create(value).subscribe(() => {
-        this.router.navigate(['/animals']);
-      });
+      }
     }
+  }
+
+  private initForm(vet?: Veterinarian): void {
+    this.vetForm = new FormGroup({
+      firstName: new FormControl(vet?.firstName, [Validators.required]),
+      lastName: new FormControl(vet?.lastName, [Validators.required]),
+    });
   }
 }

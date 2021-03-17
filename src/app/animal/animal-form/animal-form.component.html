@@ -1,12 +1,22 @@
-<form (ngSubmit)="onSubmit()" *ngIf="animal else loading">
+<form #animalForm="ngForm" (ngSubmit)="onSubmit(animalForm)" *ngIf="animal else loading">
     <label for="name">Nom</label>
-    <input id="name" name="name" [(ngModel)]="animal.name" /><br />
+    <input id="name" name="name" [(ngModel)]="animal.name" #nameCtrl="ngModel" required minlength="4" /><br />
+    <p *ngIf="animalForm.submitted && nameCtrl.errors?.required">Ce champs est obligatoire.</p>
+    <p *ngIf="animalForm.submitted && nameCtrl.errors?.minlength">
+        Ce champs doit avoir {{nameCtrl.errors?.minlength.requiredLength}} caractères.
+    </p>
+
     <label for="species">Espèce</label>
-    <input id="species" name="species" [(ngModel)]="animal.species" /><br />
+    <input id="species" name="species" [(ngModel)]="animal.species" #speciesCtrl="ngModel" required /><br />
+    <p *ngIf="animalForm.submitted && speciesCtrl.errors?.required">Ce champs est obligatoire.</p>
+
     <label for="veterinarian">Vétérinaire</label>
-    <input id="veterinarian" name="veterinarian" [(ngModel)]="animal.veterinarian" /><br />
+    <input id="veterinarian" name="veterinarian" [(ngModel)]="animal.veterinarian" #vetCtrl="ngModel" required /><br />
+    <p *ngIf="animalForm.submitted && vetCtrl.errors?.required">Ce champs est obligatoire.</p>
+
     <label for="comment">Commentaire</label>
     <textarea id="comment" name="comment" [(ngModel)]="animal.comment"></textarea><br />
+
     <button>Soumettre</button>
 </form>
 <ng-template #loading>

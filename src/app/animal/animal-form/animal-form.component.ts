@@ -35,15 +35,17 @@ export class AnimalFormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    if (this.animal.id) {
-      this.animalService.update(this.animal).subscribe(() => {
-        this.router.navigate(['/animals']);
-      });
-    } else {
-      this.animalService.create(this.animal).subscribe(() => {
-        this.router.navigate(['/animals']);
-      });
+  onSubmit(ngForm): void {
+    if (ngForm.form.valid) {
+      if (this.animal.id) {
+        this.animalService.update(this.animal).subscribe(() => {
+          this.router.navigate(['/animals']);
+        });
+      } else {
+        this.animalService.create(this.animal).subscribe(() => {
+          this.router.navigate(['/animals']);
+        });
+      }
     }
   }
 }

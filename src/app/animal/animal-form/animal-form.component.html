@@ -1,0 +1,14 @@
+<form (ngSubmit)="onSubmit()" *ngIf="animal else loading">
+    <label for="name">Nom</label>
+    <input id="name" name="name" [(ngModel)]="animal.name" /><br />
+    <label for="species">Espèce</label>
+    <input id="species" name="species" [(ngModel)]="animal.species" /><br />
+    <label for="veterinarian">Vétérinaire</label>
+    <input id="veterinarian" name="veterinarian" [(ngModel)]="animal.veterinarian" /><br />
+    <label for="comment">Commentaire</label>
+    <textarea id="comment" name="comment" [(ngModel)]="animal.comment"></textarea><br />
+    <button>Soumettre</button>
+</form>
+<ng-template #loading>
+    Loading...
+</ng-template>

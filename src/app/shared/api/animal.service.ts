@@ -20,4 +20,12 @@ export class AnimalService {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`/api/animals/${id}`);
   }
+
+  create(model: Animal): Observable<Animal> {
+    return this.httpClient.post<Animal>('/api/animals', model);
+  }
+
+  update(model: Animal): Observable<Animal> {
+    return this.httpClient.put<Animal>(`/api/animals/${model.id}`, model);
+  }
 }

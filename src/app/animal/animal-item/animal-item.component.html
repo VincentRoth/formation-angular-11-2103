@@ -1,3 +1,4 @@
 <a [routerLink]="[model.id]">{{ model.name }}</a>
 <a appMailTo>{{ model.email }}</a>
+<a [routerLink]="['edit',model.id]">Modifier</a>
 <button (click)="onDelete()">Supprimer</button>

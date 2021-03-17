@@ -20,4 +20,15 @@ export class VeterinarianService {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`/api/veterinarians/${id}`);
   }
+
+  create(model: Veterinarian): Observable<Veterinarian> {
+    return this.httpClient.post<Veterinarian>('/api/veterinarians', model);
+  }
+
+  update(model: Veterinarian): Observable<Veterinarian> {
+    return this.httpClient.put<Veterinarian>(
+      `/api/veterinarians/${model.id}`,
+      model
+    );
+  }
 }

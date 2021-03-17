@@ -1,0 +1,12 @@
+<form [formGroup]="vetForm" (ngSubmit)="onSubmit()" *ngIf="vetForm else loading">
+    <label for="firstName">Prénom</label>
+    <input id="firstName" formControlName="firstName" /><br />
+
+    <label for="lastName">Nom</label>
+    <input id="lastName" formControlName="lastName" /><br />
+
+    <button>Soumettre</button>
+</form>
+<ng-template #loading>
+    Loading...
+</ng-template>

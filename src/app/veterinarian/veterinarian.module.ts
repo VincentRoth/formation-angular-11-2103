@@ -5,9 +5,11 @@ import { VeterinarianRoutingModule } from './veterinarian-routing.module';
 import { VetListComponent } from './vet-list/vet-list.component';
 import { VetDetailComponent } from './vet-detail/vet-detail.component';
 import { VetRootComponent } from './vet-root/vet-root.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { VetFormComponent } from './vet-form/vet-form.component';
 
 @NgModule({
-  declarations: [VetListComponent, VetDetailComponent, VetRootComponent],
-  imports: [CommonModule, VeterinarianRoutingModule],
+  declarations: [VetListComponent, VetDetailComponent, VetRootComponent, VetFormComponent],
+  imports: [CommonModule, VeterinarianRoutingModule, ReactiveFormsModule],
 })
 export class VeterinarianModule {}

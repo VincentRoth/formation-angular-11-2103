@@ -1,7 +1,24 @@
-<ul>
-    <li *ngFor="let vet of vets">
-        <a [routerLink]="[vet.id]">{{ vet.firstName }} {{ vet.lastName }}</a>
-        <a [routerLink]="['edit', vet.id]">Modifier</a>
-        <button (click)="delete(vet)">Supprimer</button>
-    </li>
-</ul>
+<table mat-table [dataSource]="vets" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>Prénom</th>
+        <td mat-cell *matCellDef="let vet">{{vet.firstName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let vet">{{vet.lastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let vet">
+            <a mat-button [routerLink]="[vet.id]">Voir</a>
+            <a mat-button [routerLink]="['edit', vet.id]">Modifier</a>
+            <button mat-button (click)="delete(vet)">Supprimer</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -8,6 +8,7 @@ import { VeterinarianService } from '../../shared/api/veterinarian.service';
   styleUrls: ['./vet-list.component.scss'],
 })
 export class VetListComponent implements OnInit {
+  displayedColumns = ['lastName', 'firstName', 'actions'];
   vets: Veterinarian[];
 
   constructor(private veterinarianService: VeterinarianService) {}

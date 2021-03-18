@@ -1,3 +1,9 @@
 app-animal-item {
   margin: 0.5rem;
 }
+
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

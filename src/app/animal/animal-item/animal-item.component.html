@@ -6,6 +6,7 @@
         <p>
             {{ model.comment }}
         </p>
+        <ng-content></ng-content>
     </mat-card-content>
     <mat-card-actions>
         <a mat-stroked-button [routerLink]="[model.id]">Voir</a>

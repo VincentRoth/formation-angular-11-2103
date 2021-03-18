@@ -5,11 +5,12 @@ import { FormatPhonePipe } from './format-phone.pipe';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TimeInterceptor } from './time.interceptor';
 import { UiModule } from './ui/ui.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [MailToDirective, FormatPhonePipe],
   imports: [CommonModule, HttpClientModule],
-  exports: [MailToDirective, FormatPhonePipe, UiModule],
+  exports: [MailToDirective, FormatPhonePipe, UiModule, TranslateModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },
   ],

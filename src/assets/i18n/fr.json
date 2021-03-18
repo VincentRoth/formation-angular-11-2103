@@ -1,0 +1,10 @@
+{
+    "home": {
+        "nav": {
+            "veterinarians": "Vétérinaires"
+        }
+    },
+    "animal": {
+        "name": "Nom"
+    }
+}

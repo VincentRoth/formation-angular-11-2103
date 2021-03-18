@@ -1,12 +1,20 @@
 <mat-toolbar color="primary">
-    <img src="assets/images/logo-nav@2x.png" />
-    <h1>{{ title }} app is running! {{getEnv()}}</h1>
-    <nav>
-        <a mat-icon-button routerLink="/">
-            <mat-icon>home</mat-icon>
-        </a>
-        <a mat-button routerLink="/veterinarians">Vétérinaires</a>
-    </nav>
+    <mat-toolbar-row>
+        <img src="assets/images/logo-nav@2x.png" />
+        <h1>{{ title }} app is running! {{getEnv()}}</h1>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <nav>
+            <a mat-icon-button routerLink="/">
+                <mat-icon>home</mat-icon>
+            </a>
+            <a mat-button routerLink="/veterinarians">
+                {{'home.nav.veterinarians' | translate}}
+            </a>
+            <button (click)="useLang('en')">EN</button>
+            <button (click)="useLang('fr')">FR</button>
+        </nav>
+    </mat-toolbar-row>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
